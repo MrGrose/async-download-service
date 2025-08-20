@@ -44,11 +44,17 @@ async def archive(request):
         await process.wait()
         await response.write_eof()
 
-    except (asyncio.CancelledError, ClientConnectionResetError):
+    except asyncio.CancelledError:
         logger.warning("Клиент разорвал соединение")
+        raise
+    except ClientConnectionResetError:
+        logger.warning("Загрузка была прервана")
     except Exception as e:
         logger.error(f"Ошибка при отправке архива: {e}")
-
+    finally:
+        if process.returncode is None:
+            process.kill()
+            await process.wait()
     return response
 
 
