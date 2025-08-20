@@ -20,35 +20,45 @@
 ```
 
 
-## Как установить
+## Как установить локально
 
-Для работы микросервиса нужен Python версии не ниже 3.6.
+1. Для работы микросервиса нужен Python версии не ниже 3.6.
 
 ```bash
 pip install -r requirements.txt
 ```
-
-## Как запустить
-
+2. Запустить:
 ```bash
 python server.py
 ```
-
 Сервер запустится на порту 8080, чтобы проверить его работу перейдите в браузере на страницу [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
 
 ## Как развернуть на сервере
 
-```bash
-python server.py
-```
+Для запуска используется [Docker Compose](https://docs.docker.com/compose/install/).
+В корне проекта расположен файл `docker-compose.yaml`.
 
-После этого перенаправить на микросервис запросы, начинающиеся с `/archive/`. Например:
+1. Убедитесь, что у вас установлены:
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-```
-GET http://host.ru/archive/3bea29ccabbbf64bdebcc055319c5745/
-GET http://host.ru/archive/af1ad8c76fda2e48ea9aed2937e972ea/
-```
+2. Клонируйте репозиторий и перейдите в папку: `git clone https://github.com/MrGrose/async-download-service.git`
+
+3. Запустите сервис Docker Compose: `docker compose -f docker-compose.yaml up -d`
+
+4. Сервер запустится на порту 8080, чтобы проверить его работу перейдите в браузере на страницу http://127.0.0.1:8080/.
+
+5. Остановка контейнера: `docker compose -f docker-compose.yaml down`
+
+6. Просмотр логов: `docker compose -f docker-compose.yaml logs -f service`
+
+7. Пересборка образа (например, после изменений в коде): 
+
+    - `docker compose -f docker-compose.yaml build`
+    - `docker compose -f docker-compose.yaml up -d`
 
 # Цели проекта
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
+
+

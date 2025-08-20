@@ -1,0 +1,9 @@
+services:
+  backend:
+    image: service:1
+    container_name: service
+    working_dir: /app
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    command: ["python3", "server.py"]
