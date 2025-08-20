@@ -44,15 +44,17 @@ python server.py
 
 2. Клонируйте репозиторий и перейдите в папку: `git clone https://github.com/MrGrose/async-download-service.git`
 
-3. Запустите сервис Docker Compose: `docker compose -f docker-compose.yaml up -d`
+3. Собрать сборку: `docker compose -f docker-compose.yaml build`
 
-4. Сервер запустится на порту 8080, чтобы проверить его работу перейдите в браузере на страницу http://127.0.0.1:8080/.
+4. Запустите сервис Docker Compose: `docker compose -f docker-compose.yaml up -d`
 
-5. Остановка контейнера: `docker compose -f docker-compose.yaml down`
+5. Сервер запустится на порту 8080, чтобы проверить его работу перейдите в браузере на страницу http://127.0.0.1:8080/.
 
-6. Просмотр логов: `docker compose -f docker-compose.yaml logs -f service`
+6. Остановка контейнера: `docker compose -f docker-compose.yaml down -v`
 
-7. Пересборка образа (например, после изменений в коде): 
+7. Просмотр логов: `docker compose -f docker-compose.yaml logs -f service`
+
+8. Пересборка образа (например, после изменений в коде): 
 
     - `docker compose -f docker-compose.yaml build`
     - `docker compose -f docker-compose.yaml up -d`
