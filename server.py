@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 async def get_folder_path(request, path):
-    folder_name = request.match_info.get("archive_hash")
+    folder_name = request.match_info["archive_hash"]
     folder_path = BASE_FOLDER / f"{path}/{folder_name}"
     if not folder_path.is_dir():
         raise web.HTTPNotFound(text="Архив не существует или был удален")
