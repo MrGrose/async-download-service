@@ -29,10 +29,7 @@ async def stream_zip_archive(folder_path, delay, response):
         stderr=asyncio.subprocess.PIPE,
     )
     try:
-        while True:
-            chunk = await process.stdout.read(524288)
-            if not chunk:
-                break
+        while chunk := await process.stdout.read(524288):
             logger.info(f"Отправка фрагмента архива размером: {len(chunk)} байт")
             await response.write(chunk)
             await asyncio.sleep(delay)
